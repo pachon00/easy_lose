@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  total_calories_day: 1
+  id_group_food: 1
+
+two:
+  name: MyString
+  total_calories_day: 1
+  id_group_food: 1
