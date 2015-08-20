@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818014204) do
+ActiveRecord::Schema.define(version: 20150820010603) do
 
   create_table "diets", force: :cascade do |t|
     t.string   "name"
     t.integer  "total_calories_day"
-    t.integer  "id_group_food"
+    t.integer  "foods_groups_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  add_index "diets", ["foods_groups_id"], name: "index_diets_on_foods_groups_id"
 
   create_table "foods", force: :cascade do |t|
     t.string   "name"
@@ -31,14 +33,21 @@ ActiveRecord::Schema.define(version: 20150818014204) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "group_foods", force: :cascade do |t|
-    t.string   "time"
-    t.string   "day"
-    t.integer  "id_food"
+  create_table "foods_groups", force: :cascade do |t|
+    t.integer  "food_id"
+    t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "group_foods", ["id_food"], name: "index_group_foods_on_id_food"
+  add_index "foods_groups", ["food_id"], name: "index_foods_groups_on_food_id"
+  add_index "foods_groups", ["group_id"], name: "index_foods_groups_on_group_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "time"
+    t.string   "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
